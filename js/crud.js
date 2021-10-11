@@ -70,17 +70,14 @@ const EditarDB = (actividad) => {
 
 }
 
-
-
-
 // EventListener
 
 formularioAP.addEventListener('submit', (e) => {
 
   e.preventDefault();
-  let actividadUI = document.querySelector('#actividad').value;
+  let actividadP = document.querySelector('#actividad').value;
 
-  CrearItem(actividadUI);
+  CrearItem(actividadP);
   GuardarDB();
 
   formularioAP.reset();
@@ -89,20 +86,15 @@ formularioAP.addEventListener('submit', (e) => {
 
 document.addEventListener('DOMContentLoaded', PintarDB);
 
-listaActividadesP .addEventListener('click', (e) => {
+listaActividadesP.addEventListener('click', (e) => {
 
   e.preventDefault();
 
   if(e.target.innerHTML === 'done' || e.target.innerHTML === 'delete'){
     let texto = e.path[2].childNodes[1].innerHTML;
-    if(e.target.innerHTML === 'delete'){
-      // Accción de eliminar
-      EliminarDB(texto);
-    }
-    if(e.target.innerHTML === 'done'){
-      // Accción de editar
-      EditarDB(texto);
-    }
+    let deleteAction = (e.target.innerHTML === 'delete') ? EliminarDB(texto) : false
+    let editAction = (e.target.innerHTML === 'done') ? EditarDB(texto) : false
+   
   }
 
 });
